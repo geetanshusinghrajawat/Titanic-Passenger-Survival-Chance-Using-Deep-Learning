@@ -4,17 +4,19 @@ from tensorflow.keras.models import load_model
 import pickle
 
 st.title('Will you Survive the Titanic?')
-
-pclass = st.slider('Enter the Passenger Class from 1 to 3',1,3)
-sex = st.selectbox('Enter Gender',['male','female'])
-sibsp = st.slider('Enter the number of siblings/spouses of the passenger',0,8)
-parch = st.slider('Enter the number of parents/children of the passenger',0,6)
-fare = st.number_input('Enter the fare paid by the passenger')
-embarked = st.selectbox('Enter the station where the journey started',['Southampton','Chebourg','Queenstown']) 
+pname = st.text_input('enter your Name')
+age = st.number_input('Age',0,100)
+sex = st.selectbox('Gender',['male','female'])
+pclass = st.slider('Select the Class between 1 to 3',1,3)
+fare = st.number_input('Fare paid by the passenger')
+sibsp = st.slider('Number of siblings/spouses',0,8)
+embarked = st.selectbox('Select the station from where your journey started',['Southampton','Chebourg','Queenstown']) 
+parch = st.slider('Number of parents/children',0,6)
 
 data = pd.DataFrame([{'Pclass': pclass, 'Sex': sex, 'SibSp': sibsp, 'Parch': parch, 'Fare': fare, 'Embarked': embarked}])
+data1 = pd.DataFrame([{'Name': pname, 'Age': age, 'Pclass': pclass, 'Sex': sex, 'SibSp': sibsp, 'Parch': parch, 'Fare': fare, 'Embarked': embarked}])
 if st.button('Passenger Details'):
-    st.write('The input data is:', data)
+    st.write('The input data is:', data1)
 
 model = load_model('model.h5')
 with open('label_encoder.pkl','rb') as file:
