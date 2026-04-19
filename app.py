@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 import pickle
 
 st.title('Will you Survive the Titanic?')
-pname = st.text_input('enter your Name')
+pname = st.text_input('Enter Name')
 age = st.number_input('Age',0,100)
 sex = st.selectbox('Gender',['male','female'])
 pclass = st.slider('Select the Class between 1 to 3',1,3)
